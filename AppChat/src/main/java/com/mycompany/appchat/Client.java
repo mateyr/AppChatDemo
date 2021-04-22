@@ -17,7 +17,7 @@ public class Client{
 
 public static void main(String[] args) {
 try{	
-Socket s=new Socket("localhost",6666);
+Socket s=new Socket("10.9.13.38",6667);
 	
 DataOutputStream dout=new DataOutputStream(s.getOutputStream());
 

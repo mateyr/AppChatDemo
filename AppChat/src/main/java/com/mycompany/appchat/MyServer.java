@@ -1,3 +1,25 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,7 +37,7 @@ import java.net.*;
 public class MyServer {
 public static void main(String[] args){
 try{
-ServerSocket ss=new ServerSocket(6666);
+ServerSocket ss=new ServerSocket(6667);
 Socket s=ss.accept();//establishes connection 
 
 DataInputStream dis=new DataInputStream(s.getInputStream());
