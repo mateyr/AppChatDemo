@@ -19,7 +19,7 @@ public class Client implements Runnable {
     @Override
     public void run() {
         //Host del servidor
-        final String HOST = "192.168.43.250";
+        final String HOST = "192.168.43.105";  // Ip de la Otra computadora
         //Puerto del servidor
         DataOutputStream out;
 

@@ -10,23 +10,36 @@ package com.mycompany.appchat;
  *
  * @author Sistemas-07
  */
-import java.io.*;
-import java.net.*;
-import java.util.Observable;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MyServer  extends Observable implements Runnable{
+public class MyServer  implements Runnable{
 
+    private PropertyChangeSupport propertySupport;
     private int puerto;
+    private String message;
+     public void addPropertyChangeListener(PropertyChangeListener pcl) {
+        propertySupport.addPropertyChangeListener(pcl);
+    }
 
+    public void removePropertyChangeListener(PropertyChangeListener pcl) {
+        propertySupport.removePropertyChangeListener(pcl);
+    }
+    
+  
     public MyServer(int puerto) {
         this.puerto = puerto;
+         propertySupport = new PropertyChangeSupport(this);
     }
 
     @Override
     public void run() {
-
         ServerSocket servidor = null;
         Socket sc = null;
         DataInputStream in;
@@ -42,21 +55,17 @@ public class MyServer  extends Observable implements Runnable{
                 //Espero a que un cliente se conecte
                 sc = servidor.accept();
 
-                System.out.println("Cliente conectado");
+                //System.out.println("Cliente conectado");
                 in = new DataInputStream(sc.getInputStream());
                
                 //Leo el mensaje que me envia
-                String mensaje = in.readUTF();
-
-                System.out.println(mensaje);
-
-                this.setChanged();
-                this.notifyObservers(mensaje);
-                this.clearChanged();
-                
+                String messageSuport = in.readUTF();
+               
+                propertySupport.firePropertyChange("Mensaje", message,messageSuport);
+          
                 //Cierro el socket
                 sc.close();
-                System.out.println("Cliente desconectado");
+                //System.out.println("Cliente desconectado");
 
             }
 

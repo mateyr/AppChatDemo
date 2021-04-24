@@ -5,17 +5,27 @@
  */
 package com.mycompany.appchat;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 /**
  *
  * @author MateyR
  */
-public class FrmChatDemo extends javax.swing.JFrame {
+public class FrmChatDemo extends javax.swing.JFrame implements PropertyChangeListener
+{
 
+    private MyServer server;
+    
     /**
      * Creates new form FrmChatDemo
      */
     public FrmChatDemo() {
         initComponents();
+        server = new MyServer(5000);
+        server.addPropertyChangeListener(this);  // Se agrega el Frm como observador de la clase MyServer
+        Thread t = new Thread(server);
+        t.start();
     }
 
     /**
@@ -140,4 +150,9 @@ public class FrmChatDemo extends javax.swing.JFrame {
     private javax.swing.JTextArea txtAConversation;
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+       txtAConversation.append((String) evt.getNewValue());
+    }
 }
