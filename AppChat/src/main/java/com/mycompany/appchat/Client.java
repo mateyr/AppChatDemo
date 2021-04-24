@@ -1,34 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.appchat;
 
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author Sistemas-07
- */
-public class Client{
-    
+public class Client implements Runnable {
 
-public static void main(String[] args) {
-try{	
-Socket s=new Socket("10.9.13.38",6667);
-	
-DataOutputStream dout=new DataOutputStream(s.getOutputStream());
+    private int puerto;
+    private String mensaje;
 
-dout.writeUTF("Hello Server");
-dout.flush();
+    public Client(int puerto, String mensaje) {
+        this.puerto = puerto;
+        this.mensaje = mensaje;
+    }
 
-dout.close();
-s.close();
+    @Override
+    public void run() {
+        //Host del servidor
+        final String HOST = "192.168.43.250";
+        //Puerto del servidor
+        DataOutputStream out;
 
-}catch(Exception e){System.out.println(e);}
+        try {
+            //Creo el socket para conectarme con el cliente
+            Socket sc = new Socket(HOST, puerto);
+
+            out = new DataOutputStream(sc.getOutputStream());
+
+            //Envio un mensaje al cliente
+            out.writeUTF(mensaje);
+
+            sc.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
-}
-
-
