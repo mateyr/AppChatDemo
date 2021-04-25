@@ -34,9 +34,6 @@ public class DlgCredentials extends javax.swing.JDialog {
         return password;
     }
     
-    
-    
-    
 
     public JButton getBtnSignIn() {
         return btnSignIn;

@@ -18,6 +18,8 @@ public class FrmAppSocialMedia extends javax.swing.JFrame {
     
     private FrmAppSocialMediaController FrmAppcontroller;
     
+    
+    
     /**
      * Creates new form FrmAppSocialMedia
      */
@@ -27,6 +29,13 @@ public class FrmAppSocialMedia extends javax.swing.JFrame {
         FrmAppcontroller = new FrmAppSocialMediaController(this);
         
     }
+
+    public FrmAppSocialMediaController getFrmAppcontroller() {
+        return FrmAppcontroller;
+    }
+    
+    
+    
 
     public JDesktopPane getDtkContent() {
         return dtkContent;

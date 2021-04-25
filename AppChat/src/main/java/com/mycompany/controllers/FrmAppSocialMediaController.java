@@ -20,11 +20,23 @@ public class FrmAppSocialMediaController {
     private FrmAppSocialMedia frmAppSocialMedia;
 
     private IfrmChatArea chatArea;
+    private DlgCredentials Dlgcredentials;
+     
+    private String userNameSupport;
+    private String passwordSupport;
+
+    public String getUserNameSupport() {
+        return userNameSupport;
+    }
+
+    public String getPasswordSupport() {
+        return passwordSupport;
+    }
+    
                        
-                        
-                        
     public FrmAppSocialMediaController(FrmAppSocialMedia frmAppSocialMedia) {
         this.frmAppSocialMedia = frmAppSocialMedia;
+        
         initComponet();
         
     }
@@ -42,10 +54,13 @@ public class FrmAppSocialMediaController {
     
     public void mniSignInActionPerformed(ActionEvent e){
        
-      DlgCredentials Dlgcredentials = new DlgCredentials(null, true);
+      Dlgcredentials = new DlgCredentials(null, true);
       
       Dlgcredentials.setVisible(true);
-  
+      
+      this.userNameSupport = Dlgcredentials.getUsername();
+      this.passwordSupport = Dlgcredentials.getPassword();
+      
       chatArea = new IfrmChatArea();
       
       frmAppSocialMedia.getDtkContent().add(chatArea);
@@ -56,7 +71,6 @@ public class FrmAppSocialMediaController {
       
         
     } 
-    
-    
+
     
 }
