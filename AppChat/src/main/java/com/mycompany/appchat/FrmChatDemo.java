@@ -46,6 +46,8 @@ public class FrmChatDemo extends javax.swing.JFrame implements PropertyChangeLis
         txtAConversation = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 102, 255));
+        setForeground(java.awt.Color.blue);
 
         PnlEscritura.setBackground(new java.awt.Color(0, 153, 255));
         PnlEscritura.setLayout(new java.awt.GridBagLayout());
@@ -83,18 +85,19 @@ public class FrmChatDemo extends javax.swing.JFrame implements PropertyChangeLis
         txtAConversation.setColumns(20);
         txtAConversation.setForeground(new java.awt.Color(0, 0, 0));
         txtAConversation.setRows(5);
+        txtAConversation.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Conversation", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         jScrollPane3.setViewportView(txtAConversation);
 
         PnlChatArea.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(PnlChatArea, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(418, 322));
+        setSize(new java.awt.Dimension(529, 343));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-        String mensaje =  txtMessage.getText() + "\n";
+        String mensaje = "MateyR :"+ txtMessage.getText() + "\n";   // On the another pc chance the The name :v
         
         txtAConversation.append(mensaje );
         
